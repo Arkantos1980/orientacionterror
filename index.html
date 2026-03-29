@@ -488,7 +488,10 @@ function agregarPunto() {
   if (cfgTemporal.puntos.includes(val)) { toast('Ese punto ya existe.'); return; }
   cfgTemporal.puntos.push(val);
   inp.value = '';
-  renderizarPuntos();
+  // Actualizar tanto los chips como los selectores de todas las rutas
+  renderizarPanel();
+  // Mantener el foco para añadir más puntos rápido
+  setTimeout(() => document.getElementById('nuevo-punto').focus(), 50);
 }
 
 function eliminarPunto(i) {
