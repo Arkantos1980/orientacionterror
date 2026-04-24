@@ -243,6 +243,14 @@
                 <button class="btn btn-dark" style="font-size:.7rem; padding:.5rem; margin-top:.5rem; width: 100%; border: 1px solid var(--line);" onclick="descargarEjemploCSV()">⬇️ Descargar Plantilla CSV</button>
             </div>
 
+            <div class="route-config">
+                <p style="font-size:.8rem; font-weight:700; color:var(--gold); margin-bottom:.5rem;">CAMBIAR CONTRASEÑA</p>
+                <div style="display:flex; gap:.5rem;">
+                    <input type="password" id="nuevo-pin" placeholder="Nueva contraseña" style="margin-bottom:0; font-size:0.9rem;" />
+                    <button class="btn btn-blue" style="width:auto; padding:0 1rem;" onclick="cambiarPin()">Guardar</button>
+                </div>
+            </div>
+
             <button class="btn btn-blue" onclick="agregarRuta()" style="margin-bottom:.5rem;">+ Nueva Ruta</button>
             <button class="btn btn-green" onclick="guardarConfiguracion()">💾 Guardar y Salir</button>
             <button class="btn btn-dark" onclick="cerrarConfig()" style="margin-top:.5rem">Cancelar</button>
@@ -511,6 +519,14 @@ function cambiarPantalla(id) {
     function quitarDeRuta(ri, pi) {
         cfgTemporal.rutas[ri].orden.splice(pi, 1);
         renderizarPanel();
+    }
+
+    function cambiarPin() {
+        const val = document.getElementById('nuevo-pin').value.trim();
+        if (!val) { toast("⚠️ Escribe una contraseña."); return; }
+        cfgTemporal.pin = val;
+        document.getElementById('nuevo-pin').value = '';
+        toast("🔑 Contraseña actualizada (pulsa Guardar).");
     }
 
     function guardarConfiguracion() {
